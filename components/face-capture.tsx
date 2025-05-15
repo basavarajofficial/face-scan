@@ -60,7 +60,7 @@ export default function FaceCapture({ onCapture }: FaceCaptureProps) {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: {
-            width: { ideal: 840 },
+            width: { ideal: 640 },
             height: { ideal: 480 },
             facingMode: "user",
           },
@@ -144,7 +144,7 @@ export default function FaceCapture({ onCapture }: FaceCaptureProps) {
 
   return (
     <div className="space-y-4">
-      <Card className="relative overflow-hidden rounded-md bg-slate-100 aspect-video flex items-center justify-center">
+      <Card className="relative overflow-hidden rounded-md bg-slate-200 aspect-video flex items-center justify-center">
         {(isLoading || isModelLoading) && (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-100 z-10">
             <Loader2 className="h-8 w-8 animate-spin text-slate-500" />

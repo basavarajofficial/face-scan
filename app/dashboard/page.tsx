@@ -10,7 +10,8 @@ import { LogOut, User, Shield, Settings } from "lucide-react"
 export default function Dashboard() {
   const router = useRouter()
   const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [authMode, setAuthMode] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -37,12 +38,7 @@ export default function Dashboard() {
 
     useEffect(() => {
       const authMode = sessionStorage.getItem("auth_mode");
-      setUser((prev: any) => {
-        return {
-          ...prev,
-          authMode: authMode,
-        };
-      })
+      setAuthMode(authMode);
     }, []);
 
   const handleLogout = async () => {
@@ -62,6 +58,9 @@ export default function Dashboard() {
       </div>
     )
   }
+
+  console.log(user);
+
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -109,7 +108,7 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <span className="text-sm font-medium text-slate-500">Authentication Method</span>
-                  <p>{user.authMode}</p>
+                  <p>{authMode || "N/A"}    </p>
                 </div>
               </div>
             </CardContent>
